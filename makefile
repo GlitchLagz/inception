@@ -12,7 +12,7 @@ install:
 			sudo chmod 777 /usr/bin/docker-compose; \
 		fi
 
-build:
+build_compose:
 	docker-compose -f ./srcs/docker-compose.yml build
 
 rm_vol:
