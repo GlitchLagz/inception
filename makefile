@@ -1,4 +1,4 @@
-all: clean host install build_vol build_compose up
+all: clean host install build_vol build up
 
 host: 
 	@if ! grep -q "tpawson.42.fr" /etc/hosts; then \
@@ -10,9 +10,12 @@ install:
 			curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose; \
 			sudo chown $(USER) /usr/bin/docker-compose; \
 			sudo chmod 777 /usr/bin/docker-compose; \
+			echo "Docker compose installed"; \
+		else \
+			echo "Docker compose already installed"; \
 		fi
 
-build_compose:
+build:
 	docker-compose -f ./srcs/docker-compose.yml build
 
 rm_vol:
