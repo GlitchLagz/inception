@@ -1,6 +1,9 @@
 FROM debian:buster
 
-RUN apt update -yq
+RUN apt update -yq && \
+    apt install ntpdate -yq && \
+    ntpdate -u time.google.com && \
+    apt upgrade -yq
 RUN apt upgrade -yq
 RUN apt install mariadb-server -yq && apt install mariadb-client -yq
 RUN mkdir -p /var/run/mysqld
