@@ -1,4 +1,5 @@
-version: '3.7'
+#version not needed for some dockers/vms
+#version: '3.7'
 
 services:
   mariadb:
@@ -48,10 +49,10 @@ volumes:
   mariadb:
     driver_opts:
       type: none
-      device: /home/user/data/mysql
+      device: /home/tpawson/data/mysql
       o: bind
   wordpress:
     driver_opts:
       type: none
-      device: /home/user/data/html
+      device: /home/tpawson/data/html
       o: bind
