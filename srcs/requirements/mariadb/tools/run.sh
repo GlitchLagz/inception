@@ -6,11 +6,11 @@ sed -i 's/MYSQL_PORT/'${MYSQL_PORT}'/g' /etc/mysql/my.cnf
 sed -i 's/MYSQL_ADDRESS/'${MYSQL_ADDRESS}'/g' /etc/mysql/my.cnf
 
 if [ -d "/var/lib/mysql/$MYSQL_DATABASE" ]; then
-	echo "database exists."
-	mysqld_safe
+  echo "database exists."
+  mysqld_safe
 else
-	mysql_install_db
-	mysqld --init-file="/tmp/init.sql"
+  mysql_install_db
+  mysqld --init-file="/tmp/init.sql"
 fi
 
 exec "$@"
