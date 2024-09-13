@@ -5,7 +5,7 @@ sed -i 's/MYSQL_ROOT_PASSWORD/'${MYSQL_ROOT_PASSWORD}'/g' /tmp/init.sql
 sed -i 's/MYSQL_PORT/'${MYSQL_PORT}'/g' /etc/mysql/my.cnf
 sed -i 's/MYSQL_ADDRESS/'${MYSQL_ADDRESS}'/g' /etc/mysql/my.cnf
 
-if [ -d "var/lib/mysql/$MYSQL_DATABASE" ]; then
+if [ -d "/var/lib/mysql/$MYSQL_DATABASE" ]; then
 	echo "database exists."
 	mysqld_safe
 else
