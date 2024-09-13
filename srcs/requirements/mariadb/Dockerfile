@@ -1,4 +1,4 @@
-#FROM debian:buster
+FROM debian:buster
 
 RUN apt update -yq && \
     apt upgrade -yq && \
