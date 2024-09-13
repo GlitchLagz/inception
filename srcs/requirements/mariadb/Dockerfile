@@ -1,12 +1,14 @@
 FROM debian:buster
 
-RUN apt update -yq && \
+RUN apt-get install -yq tzdata && \
+    ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
+    dpkg-reconfigure -f noninteractive tzdata && \
+    apt-get -o Acquire::Check-Valid-Until=false update && \
     apt upgrade -yq && \
-    apt install mariadb-server -yq && \
-	apt install mariadb-client -yq && \
+    apt install mariadb-server mariadb-client yq -yq && \
     mkdir -p /var/run/mysqld && \
     chown -R mysql:mysql /var/run/mysqld && \
-    chown -R mysql:mysql /etc/mysql/
+    chown -R mysql:mysql /etc/mysql
 
 COPY ./tools/run.sh /tmp/
 COPY ./conf/init.sql /tmp/
