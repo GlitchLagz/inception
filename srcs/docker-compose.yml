@@ -37,7 +37,7 @@ services:
       - wordpress:/var/www/wordpress
     ports:
       - "443:443"
-    restart: on_failure
+    restart: on-failure
     networks:
       - inception
 
