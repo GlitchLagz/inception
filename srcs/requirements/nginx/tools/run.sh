@@ -2,7 +2,7 @@ mkdir -p $WP_PATH
 chown -R www-data $WP_PATH
 
 openssl req -x509 -nodes -days 365 \
--subj "/C=AU/ST=South Australia/L=Adelaide/0=42/OU='${MYSQL_USER}'/CN='${DOMAIN_NAME}'" -newkey rsa:2048 \
+-subj "/C=AU/ST=South Australia/L=Adelaide/O=42/OU='${MYSQL_USER}'/CN='${DOMAIN_NAME}'" -newkey rsa:2048 \
 -keyout $CERTS_KEY -out $CERTS_CRT
 
 sed -i 's|DOMAIN_NAME|'${DOMAIN_NAME}'|g' /etc/nginx/sites-available/default.conf
