@@ -2,6 +2,7 @@ sed -i 's/PHP_PORT/'${PHP_PORT}'/g' /etc/php/7.3/fpm/pool.d/www.conf
 
 if [ -f "/var/www/wordpress/wp-config.php" ]
 then
+  wp user update admin --admin_user=$WP_USER --admin_password=$WP_PASSWORD --allow-root
   wp user update $WP_USER --user_pass=$WP_PASSWORD --allow-root
   echo "WordPress already configured."
 else
