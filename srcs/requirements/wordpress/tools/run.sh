@@ -2,6 +2,7 @@ sed -i 's/PHP_PORT/'${PHP_PORT}'/g' /etc/php/7.3/fpm/pool.d/www.conf
 
 if [ -f "/var/www/wordpress/wp-config.php" ]
 then
+  wp user update $WP_USER --user_pass=$WP_PASSWORD --allow-root
   echo "WordPress already configured."
 else
   wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -18,6 +19,7 @@ else
     sed -i "s/localhost/mariadb/" /var/www/wordpress/wp-config.php
   fi
   wp core install --path=$WP_PATH --url=$DOMAIN_NAME --title=$WP_TITLE --admin_user=$WP_USER --admin_password=$WP_PASSWORD --admin_email=$WP_EMAIL --skip-email --allow-root
+  
   wp theme install twentytwentyfour --path=$WP_PATH --activate --allow-root
   wp theme activate twentytwentyfour --path=$WP_PATH --allow-root
   wp user create travis travis@test --role=author --path=$WP_PATH --user_pass=travis --allow-root
