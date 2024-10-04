@@ -1,6 +1,22 @@
-#version not needed for some dockers/vms
-version: '3.7'
+#Docker compose is a tool to define and manage multi-container apps, instead of mannually running and linking
+#the containers, compose allows you to defined them all in the .yml file
+#Each service represents a container, volumes show where the data is to be stored after stopping a conatiner
+#or running it.
+#A network can be set up to allow the containers to communicate with each other, in this case the inception
+#network is established for the services to communicate using the bridge driver which is a type of networking driver
 
+#Docker image used with docker compose and without docker compose is fundementally the same, however more
+#work is required to mannually to get the same results, managing containers induvidually, manually configing
+# networking, storage, env vars and linking using the CLI, TLDR: saves time and is efficent, no cave man brain
+
+#Subjects directory stucture allows scalability, modularity and security benifits due to each service being
+#seperates and the directories for the services being at the same level and makes it easier to update and expand
+#in the future
+
+#mariadb is the database that wordpress uses to store content eg: pages, posts, texts, images, it is known
+#for its high performance which is what wordpress needs for high traffic and works with nginx
+#which can serve SSL certificates to secure traffic, creating a sercure enviro for the wordpress site. 
+#mariadb also has a backup and recovery system 
 services:
   mariadb:
     build: requirements/mariadb
@@ -25,7 +41,7 @@ services:
     restart: on-failure
     networks:
       - inception
-    
+# port 443 exposed for project
   nginx:
     build: requirements/nginx
     image: nginx
@@ -40,7 +56,7 @@ services:
     restart: on-failure
     networks:
       - inception
-
+#docker network established
 networks:
   inception:
     driver: bridge

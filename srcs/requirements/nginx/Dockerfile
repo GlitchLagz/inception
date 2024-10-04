@@ -1,3 +1,4 @@
+#nginx is a webserver that works with wordpress to host the wordpress site
 FROM debian:buster
 
 RUN apt update -yq && \
