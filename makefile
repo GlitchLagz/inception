@@ -1,4 +1,4 @@
-.PHONY: hosts all install build up start down remove re list images delete
+.PHONY: logs hosts all install build up start down remove re list images delete
 
 all: clean host install create_vol build up
 
@@ -47,7 +47,7 @@ down:
 	@if docker network ls | grep -q "srcs_inception"; then \
 		docker compose -f ./srcs/docker-compose.yml down; \
 	else \
-		echo "Network currently down"; \
+		echo "Docker network already down"; \
 	fi
 
 clean: down
